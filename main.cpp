@@ -44,7 +44,9 @@ int main(int argc, char *argv[]) {
 				std::cout << "lenght: " << boost::filesystem::file_size(path) << std::endl;
 
 				std::stringstream httpResponse;
+
 				httpResponse << "HTTP/1.1 200 OK\n";
+
 				httpResponse << "Server: FileServer/0.0.1\n";
 				httpResponse << "Content-Type: application/octet-stream\n";
 				httpResponse << "Content-Length: " << boost::filesystem::file_size(path) << "\n\n";
@@ -69,17 +71,19 @@ int main(int argc, char *argv[]) {
 			}
 			else{
 				std::cout << "No such file: " << filename << std::endl;
-				
+
 				// extract http-request method and filename
 				httpRequest >> method >> filename;
 				std::cout << "Requested file: " << filename << std::endl;
 
 				// create http-response
+
 				std::string payload("The file does not exist!");
 				int payloadSize = payload.length();
 
 				std::stringstream httpResponse;
 				httpResponse << "HTTP/1.1 200 OK\n";
+
 				httpResponse << "Server: FileServer/0.0.1\n";
 				httpResponse << "Content-Type: text/html \n";
 				httpResponse << "Content-Length: " << payloadSize << "\n\n";
