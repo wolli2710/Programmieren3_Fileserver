@@ -8,7 +8,7 @@ Multimediatechnology SS2010
 
 using boost::asio::ip::tcp;
 
-Download::Download(BoundedBuffer* buffer)
+Download::Download(BoundedBuffer<tcp::socket>* buffer)
 {
   this->buffer = buffer;
 }

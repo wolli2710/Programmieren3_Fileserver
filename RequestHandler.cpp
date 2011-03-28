@@ -7,7 +7,7 @@ Multimediatechnology SS2010
 #include "RequestHandler.h"
 
 
-RequestHandler::RequestHandler(BoundedBuffer* buffer) : socketBuffer(buffer)
+RequestHandler::RequestHandler(BoundedBuffer<tcp::socket>* buffer) : socketBuffer(buffer)
 {
   port = 80;
 }
