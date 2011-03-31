@@ -16,12 +16,12 @@ using boost::asio::ip::tcp;
 class RequestHandler
 {
 public:
-  RequestHandler(BoundedBuffer* buffer);
+  RequestHandler(BoundedBuffer<tcp::socket> *buffer);
   void run();
   ~RequestHandler(void);
 
 private:
-  BoundedBuffer *socketBuffer;
+  BoundedBuffer<tcp::socket> *socketBuffer;
   int port;
 };
 
