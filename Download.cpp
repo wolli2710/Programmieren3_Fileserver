@@ -13,7 +13,6 @@ Download::Download(BoundedBuffer* buffer)
   this->buffer = buffer;
 }
 
-
 Download::~Download(void)
 {
 }
@@ -42,7 +41,6 @@ std::string getHtmlHeader(int contentType, unsigned int contentSize){
 }
 
 void Download::run(){
-
   for(;;){
     tcp::socket* socket = buffer->get();
 
@@ -61,7 +59,6 @@ void Download::run(){
       std::cout << "testpath: " << path.directory_string() << std::endl;
 
 			if(boost::filesystem::is_regular_file(path)){
-
 				std::ifstream file(("Files/"+ filename).c_str(), std::ios::binary); //we open this file
 				unsigned int buff_size = 1024;//boost::filesystem::file_size(path);
 				char* buff = new char[buff_size]; //creating the buffer
@@ -89,15 +86,12 @@ void Download::run(){
 			else{
 				std::cout << "No such file: " << filename << std::endl;
         std::string payload = "<html><head><title></title></head><body><h1>The file " + filename + " does not exist!</h1></body></html>";
-
 				int payloadSize = payload.length();
 				// create http-response
         std::string httpResponse = getHtmlHeader(ContentType::html, payloadSize);				
         socket->send(boost::asio::buffer(httpResponse.c_str(), httpResponse.length()));
-
 				// send the http-response payload
-				socket->send(boost::asio::buffer(payload.c_str(), payloadSize));
-				
+				socket->send(boost::asio::buffer(payload.c_str(), payloadSize));				
 			}
       socket->shutdown(tcp::socket::shutdown_both);
 			socket->close();

@@ -16,7 +16,6 @@ RequestHandler::~RequestHandler(void)
 {
 }
 
-
 void RequestHandler::run(){
   
   for(;;){

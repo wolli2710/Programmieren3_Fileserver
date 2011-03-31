@@ -68,11 +68,13 @@
     <ClCompile Include="Download.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RequestHandler.cpp" />
+    <ClCompile Include="Upload.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoundedBuffer.h" />
     <ClInclude Include="Download.h" />
     <ClInclude Include="RequestHandler.h" />
+    <ClInclude Include="Upload.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
