@@ -21,9 +21,7 @@ public:
   ~RequestHandler(void);
 
 private:
-  BoundedBuffer<Download*> *downloadBuffer;
-  BoundedBuffer<Upload*> *uploadBuffer;
+  BoundedBuffer<tcp::socket> *socketBuffer;
   int port;
-
 };
 

@@ -19,13 +19,12 @@ class Download
 {
 
 public:
-	Download(std::string filename ,tcp::socket socket);
+  Download(BoundedBuffer<tcp::socket> *buffer);
   ~Download(void);
   void run();
 
 
 private:
   char requestBuffer[1024];
-  std::string filename;
-  tcp::socket socket;
+  BoundedBuffer<tcp::socket> *buffer;
 };

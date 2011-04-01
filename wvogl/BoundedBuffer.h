@@ -20,7 +20,7 @@ class BoundedBuffer
 public:
   BoundedBuffer<T>(int maxElements) : availableElements(0), freeElements(maxElements){}
 
-  void put(T *element);
+  void put(T *socket);
 	T* get(void);
 private:
   std::deque<T*> queue;
@@ -29,11 +29,11 @@ private:
 };
 
 template <class T>
-void BoundedBuffer<T>::put(T *element) {
+void BoundedBuffer<T>::put(T *socket) {
     freeElements.wait();
     {
       boost::mutex::scoped_lock lock(queueMutext);
-		  queue.push_back(element);
+		  queue.push_back(socket);
     }
     availableElements.post();
 }
