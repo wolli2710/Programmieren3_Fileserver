@@ -49,7 +49,7 @@ void Download::run(){
 
 			if(boost::filesystem::is_regular_file(path)){
 				std::ifstream file(("Files/"+ filename).c_str(), std::ios::binary); //we open this file
-				unsigned int buff_size = 1024;//boost::filesystem::file_size(path);
+				unsigned int buff_size = 1024;
 				char* buff = new char[buff_size]; //creating the buffer
 				unsigned int count = 0; //counter
 				std::cout << "Sending" << std::endl;

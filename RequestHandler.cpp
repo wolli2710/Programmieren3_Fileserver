@@ -34,15 +34,25 @@ void RequestHandler::run(){
 		// print the entire http request:
 		std::stringstream httpRequest(std::string(requestBuffer, requestSize));
 		std::cout << httpRequest.str();
-		std::string method, filename;
+		std::string method, filename, cLength;
 
 		// extract http-request method and filename
 		httpRequest >> method >> filename;
+
 		//erase the / in the path
 		filename.erase(0,1); 
 		std::cout << "Requested file: " << filename << std::endl;
 
 		if(method == "POST"){
+			// get content Length
+			httpRequest.seekg("Content-Length")+16;
+			httpRequest >> cLength;
+			int contentLength = atoi(cLength);
+			
+			//get content
+			//stringstream// content = httpRequest.seekg("\n\n")+2;
+
+
 			Upload *upload = new Upload(filename, socket);
 			uploadBuffer->put(upload);
 
