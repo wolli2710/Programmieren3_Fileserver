@@ -12,6 +12,8 @@ Multimediatechnology SS2010
 #include <deque>
 #include <boost/interprocess/sync/interprocess_semaphore.hpp>
 
+typedef boost::interprocess::interprocess_semaphore semaphore;
+
 using boost::asio::ip::tcp;
 
 template <class T>
@@ -20,33 +22,29 @@ class BoundedBuffer
 public:
   BoundedBuffer<T>(int maxElements) : availableElements(0), freeElements(maxElements){}
 
-  void put(T *socket);
-	T* get(void);
-private:
-  std::deque<T*> queue;
-  boost::mutex queueMutext;
-  boost::interprocess::interprocess_semaphore availableElements, freeElements;
-};
-
-template <class T>
-void BoundedBuffer<T>::put(T *socket) {
+  void put(T element){
     freeElements.wait();
     {
       boost::mutex::scoped_lock lock(queueMutext);
-		  queue.push_back(socket);
+      queue.push_back(element);
     }
     availableElements.post();
-}
+  }
+  T get(void){
+    T element;
+    availableElements.wait();
+    {
+      boost::mutex::scoped_lock lock(queueMutext);
+      element = queue.front();
+      queue.pop_front();
+    }
+    freeElements.post();
+    return element;
+  }
+private:
+  std::deque<T> queue;
+  boost::mutex queueMutext;
+  semaphore availableElements, freeElements;
+};
 
-template <class T>
-T* BoundedBuffer<T>::get() {
-  T *element;
-	availableElements.wait();
-	{
-		boost::mutex::scoped_lock lock(queueMutext);
-		element = queue.front();
-		queue.pop_front();
-	}
-	freeElements.post();
-	return element;
-}
+

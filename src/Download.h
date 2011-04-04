@@ -11,20 +11,24 @@ Multimediatechnology SS2010
 #include <iostream>
 #include <fstream>
 
+#include "tools.h"
 #include "BoundedBuffer.h"
+#include "ReaderWriterMutex.h"
 
 using boost::asio::ip::tcp;
 
 class Download
 {
-
 public:
-  Download(BoundedBuffer<tcp::socket> *buffer);
+  Download( std::string filename, tcp::socket *socket, ReaderWriterMutex* readerWriterMutex)
+    : socket(socket), 
+      filename(filename), 
+      readerWriterMutex(readerWriterMutex){}
   ~Download(void);
   void run();
 
-
 private:
-  char requestBuffer[1024];
-  BoundedBuffer<tcp::socket> *buffer;
+  tcp::socket *socket;
+  std::string filename;
+  ReaderWriterMutex* readerWriterMutex;
 };

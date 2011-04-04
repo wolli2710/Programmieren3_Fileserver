@@ -10,6 +10,25 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\BoundedBuffer.h" />
+    <ClInclude Include="src\Download.h" />
+    <ClInclude Include="src\Downloader.h" />
+    <ClInclude Include="src\ReaderWriterMutex.h" />
+    <ClInclude Include="src\RequestHandler.h" />
+    <ClInclude Include="src\tools.h" />
+    <ClInclude Include="src\Upload.h" />
+    <ClInclude Include="src\Uploader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Download.cpp" />
+    <ClCompile Include="src\Downloader.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\ReaderWriterMutex.cpp" />
+    <ClCompile Include="src\RequestHandler.cpp" />
+    <ClCompile Include="src\Upload.cpp" />
+    <ClCompile Include="src\Uploader.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{93136FD6-450E-42A9-9CCF-3C78777BAB80}</ProjectGuid>
     <RootNamespace>prog3_01</RootNamespace>
@@ -63,17 +82,6 @@
       <AdditionalLibraryDirectories>$(BOOST_HOME)\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="BoundedBuffer.cpp" />
-    <ClCompile Include="Download.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="RequestHandler.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="BoundedBuffer.h" />
-    <ClInclude Include="Download.h" />
-    <ClInclude Include="RequestHandler.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
